@@ -1,0 +1,9 @@
+
+ButtonLogin:hover {
+    -fx-background-color: #999;
+    -fx-color: #FFF;
+}
+ButtonRegister:hover {
+    -fx-background-color: #999;
+    -fx-color: #FFF;
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane fx:id="LoginForm" prefHeight="323.0" prefWidth="550.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #33afff, #fff);" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.loginController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="370.0" minWidth="10.0" prefWidth="268.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="282.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints />
+    <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="178.0" minHeight="9.0" prefHeight="49.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TextField fx:id="TextFieldUsername" prefHeight="25.0" prefWidth="192.0" promptText="Username" style="-fx-background-color: #FFF; -fx-border-color: #EEE;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <PasswordField fx:id="TextFieldPassword" promptText="Password" style="-fx-background-color: #FFF; -fx-border-color: #EEE;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="ButtonLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ButtonLoginOnAction" style="-fx-background-color: #FFF; -fx-border-color: #EEE;" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Button fx:id="ButtonRegister" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createAccoutForm" style="-fx-background-color: #FFF; -fx-border-color: #EEE;" text="Register" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="loginMessageLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" stylesheets="@../../../css/styles.css" text=" " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+   </children>
+</GridPane>

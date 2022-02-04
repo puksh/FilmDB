@@ -1,0 +1,77 @@
+package com.projekt.projekt;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class loginController{
+
+    @FXML
+    private Button ButtonLogin;
+    @FXML
+    private Button ButtonRegister;
+    @FXML
+    private Label loginMessageLabel;
+    @FXML
+    private TextField TextFieldUsername;
+    @FXML
+    private PasswordField TextFieldPassword;
+
+    public void ButtonLoginOnAction(ActionEvent event){
+        if(TextFieldUsername.getText().isBlank() == false && TextFieldPassword.getText().isBlank() == false){
+            loginMessageLabel.setText("Trying to login");
+            validateLogin();
+        } else{
+            loginMessageLabel.setText("Please enter username and password");
+        }
+    }
+    public void validateLogin(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM users WHERE user_username='" + TextFieldUsername.getText()
+                + "' AND user_password= '" + TextFieldPassword.getText() +"'";
+
+        try{
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while(queryResult.next()){
+                if(queryResult.getInt(1)==1){
+                    loginMessageLabel.setText("Logged in");
+                }else{
+                    loginMessageLabel.setText("Invalid login. Username or Password are incorrect");
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+
+    }
+
+    public void createAccoutForm(){
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("registerForm.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.setScene(new Scene(root,349,400));
+            registerStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+}
