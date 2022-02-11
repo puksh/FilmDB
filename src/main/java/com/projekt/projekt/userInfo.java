@@ -1,7 +1,17 @@
 package com.projekt.projekt;
 
 public class userInfo {
-    String id,username,firstname,lastname,addressA,addressB,phone,postcode,city,email,theme,language,admin;
+    private String id;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String addressA;
+    private String addressB;
+    private String phone;
+    private String postcode;
+    private String city,email;
+    private String theme;
+    private String language,admin;
 
     public userInfo(String id, String username, String firstname, String lastname,
                     String addressA, String addressB, String phone, String postcode,
