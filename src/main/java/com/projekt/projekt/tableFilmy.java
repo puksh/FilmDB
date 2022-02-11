@@ -1,13 +1,13 @@
 package com.projekt.projekt;
 
 public class tableFilmy {
-    Private String id;
-    Private String tytul;
-    Private String rok;
-    Private String jezyk;
-    Private String gatunek;
-    Private String rezyser;
-    Private String aktor;
+    private String id;
+    private String tytul;
+    private String rok;
+    private String jezyk;
+    private String gatunek;
+    private String rezyser;
+    private String aktor;
 
     public tableFilmy(String id, String tytul, String rok, String jezyk, String gatunek, String rezyser, String aktor) {
         this.id = id;
