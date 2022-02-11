@@ -1,7 +1,9 @@
 package com.projekt.projekt;
 
 public class tableAktorzy {
-    String id,imie,nazwisko;
+    private String id;
+    private String imie;
+    private String nazwisko;
 
     public tableAktorzy(String id, String imie, String nazwisko) {
         this.id = id;
