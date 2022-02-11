@@ -10,8 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -51,6 +49,16 @@ public class loginController{
             while(queryResult.next()){
                 if(queryResult.getInt(1)==1){
                     loginMessageLabel.setText("Logged in");
+                    try{
+                        Parent root = FXMLLoader.load(getClass().getResource("mainPanel.fxml"));
+                        Stage registerStage = new Stage();
+                        registerStage.setScene(new Scene(root,810,400));
+                        registerStage.setResizable(false);
+                        registerStage.show();
+                    }catch(Exception e){
+                        e.printStackTrace();
+                        e.getCause();
+                    }
                 }else{
                     loginMessageLabel.setText("Invalid login. Username or Password are incorrect");
                 }
@@ -66,7 +74,8 @@ public class loginController{
         try{
             Parent root = FXMLLoader.load(getClass().getResource("registerForm.fxml"));
             Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root,349,400));
+            registerStage.setScene(new Scene(root,583,430));
+            registerStage.setResizable(false);
             registerStage.show();
         }catch(Exception e){
             e.printStackTrace();

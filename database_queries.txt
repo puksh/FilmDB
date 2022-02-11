@@ -1,0 +1,41 @@
+
+CREATE TABLE `projekt_db`.`users` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_username` VARCHAR(45) NOT NULL,
+  `user_firstname` VARCHAR(45) NOT NULL,
+  `user_lastname` VARCHAR(45) NOT NULL,
+  `user_password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `firstname_UNIQUE` (`user_firstname` ASC) VISIBLE,
+  UNIQUE INDEX `idusers_UNIQUE` (`user_id` ASC) VISIBLE);
+
+INSERT INTO users (user_username,user_firstname,user_lastname,user_password) VALUES ('Piggy','John','Bobert','1234'), ('admin','admin','admin','admin'), ('root','root','root','root');
+
+CREATE DATABASE IF NOT EXISTS 
+
+CREATE TABLE IF NOT EXISTS aktorzy (
+    aktor_id INT AUTO_INCREMENT PRIMARY KEY,
+    aktor_imie VARCHAR(255) NOT NULL,
+    aktor_nazwisko VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS rezyserowie (
+    rezyser_id INT AUTO_INCREMENT PRIMARY KEY,
+    rezyser_imie VARCHAR(255) NOT NULL,
+    rezyser_nazwisko VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS filmy (
+    film_id INT AUTO_INCREMENT PRIMARY KEY,
+    film_tytul VARCHAR(255) NOT NULL,
+    film_rok INT(5) NOT NULL,
+    film_jezyk VARCHAR(55) NOT NULL,
+    film_gatunek INT NOT NULL,
+    film_rezyser INT NOT NULL,
+    film_glownyAktor INT NOT NULL,
+    FOREIGN KEY(film_gatunek) REFERENCES gatunki(gatunek_id),
+    FOREIGN KEY(film_rezyser) REFERENCES rezyserowie(rezyser_id),
+    FOREIGN KEY(film_glownyAktor) REFERENCES aktorzy(aktor_id)
+);
+CREATE TABLE IF NOT EXISTS gatunki (
+    gatunek_id INT AUTO_INCREMENT PRIMARY KEY,
+    gatunek_nazwa VARCHAR(255) NOT NULL
+);

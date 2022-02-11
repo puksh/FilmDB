@@ -1,20 +1,10 @@
 package com.projekt.projekt;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 
-import java.io.File;
-import java.net.URL;
 import java.sql.Connection;
-import java.io.IOException;
 import java.sql.Statement;
 
 public class registerForm  {
@@ -35,15 +25,44 @@ public class registerForm  {
     @FXML
     private TextField FirstName;
 
+    @FXML
+    private RadioButton langEnglish;
+    @FXML
+    private RadioButton langPolish;
+    @FXML
+    private RadioButton themeLight;
+    @FXML
+    private RadioButton themeDark;
+
+
+    ToggleGroup lang = new ToggleGroup();
+    ToggleGroup theme = new ToggleGroup();
+
 
     public void registerButtonOnAction(ActionEvent event){
-        if(Password.getText().equals(PasswordConfirm.getText())){
-            registerUser();
-            PasswordDoesNotMatch.setText(" ");
+        if(UserName.getText().isEmpty()){
+            Registered.setText("Username is empty");
         }else{
-            PasswordDoesNotMatch.setText("Passwords do not match");
-        }
+            if(FirstName.getText().isEmpty()){
+                Registered.setText("Firstname is empty");
+            }else{
+                if(LastName.getText().isEmpty()){
+                    Registered.setText("Lastname is empty");
+                }else{
+                    if(Password.getText().equals(PasswordConfirm.getText())){
+                        if(Password.getLength()>=8){
+                            registerUser();
+                            PasswordDoesNotMatch.setText(" ");
+                        }else{
+                            PasswordDoesNotMatch.setText("Password is too short");
+                        }
 
+                    }else{
+                        PasswordDoesNotMatch.setText("Passwords do not match");
+                    }
+                }
+            }
+        }
     }
 
     public void registerUser(){
