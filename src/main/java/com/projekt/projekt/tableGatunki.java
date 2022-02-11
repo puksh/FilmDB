@@ -1,7 +1,8 @@
 package com.projekt.projekt;
 
 public class tableGatunki {
-    String id, nazwa;
+    private String id;
+    private String nazwa;
 
     public tableGatunki(String id, String nazwa) {
         this.id = id;
