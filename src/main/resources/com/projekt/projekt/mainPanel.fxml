@@ -8,7 +8,7 @@
    <children>
       <TabPane prefHeight="217.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Filmy">
+          <Tab closable="false" text="Filmy">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -18,15 +18,16 @@
                               <TableColumn fx:id="Acol_tytul" prefWidth="196.0" text="Tytul" />
                               <TableColumn fx:id="Acol_rok" minWidth="0.0" prefWidth="59.0" text="Rok" />
                               <TableColumn fx:id="Acol_jezyk" prefWidth="49.0" text="Jezyk" />
+                              <TableColumn fx:id="Acol_cena" prefWidth="35.0" text="Cena" />
                               <TableColumn fx:id="Acol_gatunek" prefWidth="112.0" text="Gatunek" />
-                              <TableColumn fx:id="Acol_rezyser" prefWidth="157.0" text="Rezyser" />
-                              <TableColumn fx:id="Acol_glownyAktor" prefWidth="201.0" text="Glowny Aktor" />
+                              <TableColumn fx:id="Acol_rezyser" prefWidth="129.0" text="Rezyser" />
+                              <TableColumn fx:id="Acol_glownyAktor" prefWidth="184.0" text="Glowny Aktor" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Aktorzy">
+            <Tab closable="false" text="Aktorzy">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -40,7 +41,7 @@
                      </children></AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Rezyseria">
+            <Tab closable="false" text="Rezyseria">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -54,7 +55,7 @@
                      </children></AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Gatunki">
+            <Tab closable="false" text="Gatunki">
                 <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -69,14 +70,32 @@
             </Tab>
         </tabs>
       </TabPane>
-      <AnchorPane layoutY="215.0" prefHeight="185.0" prefWidth="806.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
+      <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="806.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
          <children>
-            <Button fx:id="buttonLogout" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" />
+            <Button fx:id="buttonLogout" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Button fx:id="buttonShop" layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </Button>
+            <Label layoutX="669.0" layoutY="14.0" text="Wallet:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelWallet" alignment="BOTTOM_LEFT" layoutX="720.0" layoutY="14.0" prefHeight="17.0" prefWidth="37.0" text="0" textAlignment="RIGHT">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="763.0" layoutY="14.0" text="PLN">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
    </children>
 </AnchorPane>

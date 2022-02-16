@@ -4,12 +4,6 @@
     -fx-border-color: #000;
     -fx-border-radius: 35%;
 }
-/*******************************************************************************
- *
-    *I will provide this
- * Tables                                      *
- *                                                                             *
- ******************************************************************************/
 .table-view, .tree-table-view {
     -fx-table-header-border-color: transparent;
     -fx-table-cell-border-color: -fx-box-border; /* Horizontal Lines*/
@@ -19,7 +13,7 @@
 .tree-table-view .column-header {
     -fx-size: 65;
     -fx-border-style: null;
-    -fx-border-color: -swatch-grey;
+    -fx-border-color: #AAA;
     -fx-border-width: 0 0 2 0;
     -fx-background-color: transparent;
 }

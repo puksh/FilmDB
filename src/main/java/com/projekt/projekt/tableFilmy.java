@@ -5,15 +5,17 @@ public class tableFilmy {
     private String tytul;
     private String rok;
     private String jezyk;
+    private String cena;
     private String gatunek;
     private String rezyser;
     private String aktor;
 
-    public tableFilmy(String id, String tytul, String rok, String jezyk, String gatunek, String rezyser, String aktor) {
+    public tableFilmy(String id, String tytul, String rok, String jezyk, String cena, String gatunek, String rezyser, String aktor) {
         this.id = id;
         this.tytul = tytul;
         this.rok = rok;
         this.jezyk = jezyk;
+        this.cena = cena;
         this.gatunek = gatunek;
         this.rezyser = rezyser;
         this.aktor = aktor;
@@ -49,6 +51,14 @@ public class tableFilmy {
 
     public void setJezyk(String jezyk) {
         this.jezyk = jezyk;
+    }
+
+    public String getCena() {
+        return cena;
+    }
+
+    public void setCena(String cena) {
+        this.cena = cena;
     }
 
     public String getGatunek() {

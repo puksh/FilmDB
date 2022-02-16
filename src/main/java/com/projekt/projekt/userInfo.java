@@ -30,6 +30,21 @@ public class userInfo {
         this.language = language;
         this.admin = admin;
     }
+    public userInfo(){
+        this.id = " ";
+        this.username = " ";
+        this.firstname = " ";
+        this.lastname = " ";
+        this.addressA = " ";
+        this.addressB = " ";
+        this.phone = " ";
+        this.postcode = " ";
+        this.city = " ";
+        this.email = " ";
+        this.theme = " ";
+        this.language = " ";
+        this.admin = " ";
+    }
 
     public String getId() {
         return id;

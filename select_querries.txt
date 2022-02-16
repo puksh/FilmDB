@@ -15,4 +15,9 @@ INSERT INTO rezyserowie (rezyser_imie,rezyser_nazwisko) VALUES ("Steven","Spielb
 
 
 
+SELECT f.film_id,f.film_tytul,f.film_rok,f.film_jezyk,f.film_cena,gatunki.gatunek_nazwa,rezyserowie.rezyser_imie,rezyserowie.rezyser_nazwisko,aktorzy.aktor_imie,aktorzy.aktor_nazwisko
+FROM filmy AS f
+INNER JOIN aktorzy ON aktorzy.aktor_id=f.film_glownyAktor
+INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser
+INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek
 

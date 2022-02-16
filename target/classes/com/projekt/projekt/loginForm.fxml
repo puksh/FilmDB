@@ -6,28 +6,33 @@
 
 <AnchorPane fx:id="loginBackground" prefHeight="300.0" prefWidth="550.0"
             style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);"
-            stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.projekt.projekt.loginController">
+            stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.loginController">
    <children>
       <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="320.0" layoutY="186.0" maxWidth="1.7976931348623157E308" stylesheets="@../../../css/styles.css" text=" " textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Button fx:id="ButtonRegister" layoutX="311.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createAccoutForm" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="Register" textFill="WHITE">
+      <Button fx:id="ButtonRegister" layoutX="311.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#createAccoutForm" prefHeight="27.0" prefWidth="68.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" text="%key.register" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="ButtonLogin" layoutX="440.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ButtonLoginOnAction" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #FFF; -fx-border-color: #FFF; -fx-background-radius: 3em; -fx-border-radius: 45%;" text="Login">
+      <Button fx:id="ButtonLogin" layoutX="440.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ButtonLoginOnAction" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #FFF; -fx-border-color: #FFF; -fx-background-radius: 3em; -fx-border-radius: 45%;" text="%key.login">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <PasswordField fx:id="TextFieldPassword" layoutX="322.0" layoutY="111.0" prefHeight="27.0" prefWidth="192.0" promptText="Password" style="-fx-background-color: #FFF; -fx-border-color: #EEE;">
+      <PasswordField fx:id="TextFieldPassword" layoutX="322.0" layoutY="111.0" prefHeight="27.0" prefWidth="192.0" promptText="%key.password" style="-fx-background-color: #FFF; -fx-border-color: #EEE;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></PasswordField>
-      <TextField fx:id="TextFieldUsername" layoutX="322.0" layoutY="75.0" prefHeight="25.0" prefWidth="192.0" promptText="Username" style="-fx-background-color: #FFF; -fx-border-color: #EEE;">
+      <TextField fx:id="TextFieldUsername" layoutX="322.0" layoutY="75.0" prefHeight="25.0" prefWidth="192.0" promptText="%key.username" style="-fx-background-color: #FFF; -fx-border-color: #EEE;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></TextField>
+      <Label fx:id="projectName" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="13.0" prefHeight="54.0" prefWidth="470.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

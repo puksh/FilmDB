@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class loginController{
 
@@ -69,10 +71,23 @@ public class loginController{
         }
 
     }
-
+    public void loginForm(){
+        try{
+            ResourceBundle bundle = ResourceBundle.getBundle("lang/UIResources");
+            Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"),bundle);
+            Stage registerStage = new Stage();
+            registerStage.setScene(new Scene(root,550,323));
+            registerStage.setResizable(false);
+            registerStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
     public void createAccoutForm(){
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("registerForm.fxml"));
+            ResourceBundle bundle = ResourceBundle.getBundle("lang/UIResources");
+            Parent root = FXMLLoader.load(getClass().getResource("registerForm.fxml"),bundle);
             Stage registerStage = new Stage();
             registerStage.setScene(new Scene(root,583,430));
             registerStage.setResizable(false);

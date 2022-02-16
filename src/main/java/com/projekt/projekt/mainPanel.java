@@ -27,6 +27,8 @@ public class mainPanel implements Initializable {
     @FXML
     private TableColumn<tableFilmy, String> Acol_jezyk;
     @FXML
+    private TableColumn<tableFilmy, String> Acol_cena;
+    @FXML
     private TableColumn<tableFilmy, String> Acol_gatunek;
     @FXML
     private TableColumn<tableFilmy, String> Acol_rezyser;
@@ -70,13 +72,18 @@ public class mainPanel implements Initializable {
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM filmy");
+            ResultSet rs = connectDB.createStatement().executeQuery("\n" +
+                    "SELECT f.film_id,f.film_tytul,f.film_rok,f.film_jezyk,f.film_cena,gatunki.gatunek_nazwa,rezyserowie.rezyser_imie,rezyserowie.rezyser_nazwisko,aktorzy.aktor_imie,aktorzy.aktor_nazwisko \n" +
+                    "FROM filmy AS f \n" +
+                    "INNER JOIN aktorzy ON aktorzy.aktor_id=f.film_glownyAktor \n" +
+                    "INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser \n" +
+                    "INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek");
 
             while (rs.next()) {
                 oblist.add(new tableFilmy(rs.getString("film_id"), rs.getString("film_tytul"),
-                        rs.getString("film_rok"), rs.getString("film_jezyk"),
-                        rs.getString("film_gatunek"), rs.getString("film_rezyser"),
-                        rs.getString("film_glownyAktor")));
+                        rs.getString("film_rok"), rs.getString("film_jezyk"), rs.getString("film_cena"),
+                        rs.getString("gatunek_nazwa"), rs.getString("rezyser_imie")+" "+rs.getString("rezyser_nazwisko"),
+                        rs.getString("aktor_imie")+" "+rs.getString("aktor_nazwisko")));
             }
 
         } catch (SQLException e) {
@@ -87,6 +94,7 @@ public class mainPanel implements Initializable {
         Acol_tytul.setCellValueFactory(new PropertyValueFactory<>("tytul"));
         Acol_rok.setCellValueFactory(new PropertyValueFactory<>("rok"));
         Acol_jezyk.setCellValueFactory(new PropertyValueFactory<>("jezyk"));
+        Acol_cena.setCellValueFactory(new PropertyValueFactory<>("cena"));
         Acol_gatunek.setCellValueFactory(new PropertyValueFactory<>("gatunek"));
         Acol_rezyser.setCellValueFactory(new PropertyValueFactory<>("rezyser"));
         Acol_glownyAktor.setCellValueFactory(new PropertyValueFactory<>("aktor"));
@@ -97,7 +105,7 @@ public class mainPanel implements Initializable {
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
             Connection connectDB = connectNow.getConnection();
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM aktorzy");
+            ResultSet rs = connectDB.createStatement().executeQuery("SELECT * FROM aktorzy ");
 
             while (rs.next()) {
                 oblistAktorzy.add(new tableAktorzy(rs.getString("aktor_id"), rs.getString("aktor_imie"),
@@ -113,6 +121,8 @@ public class mainPanel implements Initializable {
         Bcol_nazwisko.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
 
         table_aktorzy.setItems(oblistAktorzy);
+
+        //uzupelnianie rezyserow
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
@@ -133,6 +143,8 @@ public class mainPanel implements Initializable {
         Ccol_nazwisko.setCellValueFactory(new PropertyValueFactory<>("nazwisko"));
 
         table_rezyseria.setItems(oblistRezyseria);
+
+        //uzupelnianie gatunkow
 
         try {
             DatabaseConnection connectNow = new DatabaseConnection();
