@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.AddFilm">
+<AnchorPane prefHeight="246.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.AddFilm">
    <children>
       <Label layoutX="38.0" layoutY="35.0" text="Title">
          <font>
@@ -77,6 +77,6 @@
          </font>
       </TextField>
       <Label layoutX="372.0" layoutY="14.0" text="Id Values" />
-      <Button fx:id="buttonConfirm" layoutX="421.0" layoutY="225.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="buttonConfirm" layoutX="397.0" layoutY="188.0" mnemonicParsing="false" text="Confirm" />
    </children>
 </AnchorPane>
