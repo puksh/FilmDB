@@ -1,7 +1,7 @@
 package com.projekt.projekt;
 
 public class tableFilmy {
-    private String id;
+    private int id;
     private String tytul;
     private String rok;
     private String jezyk;
@@ -10,7 +10,7 @@ public class tableFilmy {
     private String rezyser;
     private String aktor;
 
-    public tableFilmy(String id, String tytul, String rok, String jezyk, String cena, String gatunek, String rezyser, String aktor) {
+    public tableFilmy(int id, String tytul, String rok, String jezyk, String cena, String gatunek, String rezyser, String aktor) {
         this.id = id;
         this.tytul = tytul;
         this.rok = rok;
@@ -21,11 +21,22 @@ public class tableFilmy {
         this.aktor = aktor;
     }
 
-    public String getId() {
+    public tableFilmy() {
+        this.id = 0;
+        this.tytul = " ";
+        this.rok = " ";
+        this.jezyk = " ";
+        this.cena = " ";
+        this.gatunek = " ";
+        this.rezyser = " ";
+        this.aktor = " ";
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

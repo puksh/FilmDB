@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="806.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.mainPanel">
+<AnchorPane prefHeight="403.0" prefWidth="895.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.mainPanel">
    <children>
-      <TabPane prefHeight="217.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="217.0" prefWidth="895.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab closable="false" text="Filmy">
             <content>
@@ -70,7 +70,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="806.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
+      <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="895.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
          <children>
             <Button fx:id="buttonLogout" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
                <font>
