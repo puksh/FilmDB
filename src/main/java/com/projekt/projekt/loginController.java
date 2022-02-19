@@ -55,7 +55,6 @@ public class loginController{
                         Parent root = FXMLLoader.load(getClass().getResource("mainPanel.fxml"));
                         Stage registerStage = new Stage();
                         registerStage.setScene(new Scene(root,810,400));
-                        registerStage.setResizable(false);
                         registerStage.show();
                     }catch(Exception e){
                         e.printStackTrace();
@@ -77,7 +76,6 @@ public class loginController{
             Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"),bundle);
             Stage registerStage = new Stage();
             registerStage.setScene(new Scene(root,550,323));
-            registerStage.setResizable(false);
             registerStage.show();
         }catch(Exception e){
             e.printStackTrace();

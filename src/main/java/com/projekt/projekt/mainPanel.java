@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +17,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
@@ -47,6 +50,8 @@ public class mainPanel implements Initializable {
     private TableColumn<tableFilmy, String> Acol_rezyser;
     @FXML
     private TableColumn<tableFilmy, String> Acol_glownyAktor;
+    @FXML
+    private TableColumn<tableFilmy, String> Acol_edit;
 
     @FXML
     private TableView<tableAktorzy> table_aktorzy;
@@ -219,7 +224,7 @@ public void refreshTable(){
         Acol_glownyAktor.setCellValueFactory(new PropertyValueFactory<>("aktor"));
 
 
-        Callback<TableColumn<tableFilmy, String>, TableCell<tableFilmy, String>> cellFoctory = (TableColumn<tableFilmy, String> param) -> {
+        Callback<TableColumn<tableFilmy, String>, TableCell<tableFilmy, String>> cellFactory = (TableColumn<tableFilmy, String> param) -> {
             // make cell containing buttons
             final TableCell<tableFilmy, String> cell = new TableCell<tableFilmy, String>() {
                 @Override
@@ -232,17 +237,18 @@ public void refreshTable(){
 
                     } else {
 
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
+                        Button deleteIcon = new Button();
+                        Button editIcon = new Button();
+
+                        deleteIcon.setText("Delete");
+                        editIcon.setText("Edit");
 
                         deleteIcon.setStyle(
                                 " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
                                         + "-fx-fill:#ff1744;"
                         );
                         editIcon.setStyle(
                                 " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
                                         + "-fx-fill:#00E676;"
                         );
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
@@ -270,7 +276,7 @@ public void refreshTable(){
                             DatabaseConnection connectNow = new DatabaseConnection();
                             Connection connectDB = connectNow.getConnection();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/tableView/addStudent.fxml"));
+                            loader.setLocation(getClass().getResource("com/projekt/projekt/addFilm.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException e) {
@@ -292,9 +298,12 @@ public void refreshTable(){
 
                         });
 
-                        AnchorPane buttonManage = new AnchorPane(editIcon,deleteIcon);
-                        buttonManage.setStyle("-fx-alignment:center");
-                        setGraphic(buttonManage);
+                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
+                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+
+                        setGraphic(managebtn);
                         setText(null);
 
                     }
@@ -308,6 +317,8 @@ public void refreshTable(){
 
 
     };
+        Acol_edit.setCellFactory(cellFactory);
+        table_film.setItems(oblist);
     }
 
 

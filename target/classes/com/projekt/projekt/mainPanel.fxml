@@ -12,7 +12,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="table_film" prefHeight="200.0" prefWidth="806.0">
+                        <TableView fx:id="table_film" prefHeight="200.0" prefWidth="895.0">
                           <columns>
                               <TableColumn fx:id="Acol_id" prefWidth="27.0" text="Lp" />
                               <TableColumn fx:id="Acol_tytul" prefWidth="196.0" text="Tytul" />
@@ -22,6 +22,7 @@
                               <TableColumn fx:id="Acol_gatunek" prefWidth="112.0" text="Gatunek" />
                               <TableColumn fx:id="Acol_rezyser" prefWidth="129.0" text="Rezyser" />
                               <TableColumn fx:id="Acol_glownyAktor" prefWidth="184.0" text="Glowny Aktor" />
+                              <TableColumn fx:id="Acol_edit" prefWidth="101.0" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
