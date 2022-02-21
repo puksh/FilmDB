@@ -4,23 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="583.0"
-            style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css"
-            xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.registerForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="583.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.registerForm">
    <children>
-      <Label layoutX="86.0" layoutY="34.0" text="Registration" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="Password" layoutX="50.0" layoutY="234.0" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #AAA;">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></PasswordField>
-      <PasswordField fx:id="PasswordConfirm" layoutX="50.0" layoutY="278.0" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #AAA;">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></PasswordField>
       <TextField fx:id="UserName" layoutX="50.0" layoutY="98.0" prefHeight="25.0" prefWidth="250.0" promptText="Jacob1234" style="-fx-background-color: #FFF; -fx-border-color: #AAA;">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -33,6 +18,64 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></TextField>
+      <PasswordField fx:id="Password" layoutX="50.0" layoutY="234.0" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #AAA;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></PasswordField>
+      <PasswordField fx:id="PasswordConfirm" layoutX="50.0" layoutY="278.0" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FFF; -fx-border-color: #AAA;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></PasswordField>
+      <RadioButton fx:id="langEnglish" layoutX="339.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="English" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="lang" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="langPolish" layoutX="413.0" layoutY="56.0" mnemonicParsing="false" text="Polish" textFill="WHITE" toggleGroup="$lang">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></RadioButton>
+      <TextField fx:id="AddressA" layoutX="342.0" layoutY="99.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="AddressB" layoutX="342.0" layoutY="145.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="Postcode" layoutX="342.0" layoutY="189.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="City" layoutX="342.0" layoutY="235.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></TextField>
+      <TextField fx:id="Phone" layoutX="342.0" layoutY="279.0" prefHeight="25.0" prefWidth="159.0" />
+      <TextField fx:id="Email" layoutX="342.0" layoutY="321.0" prefHeight="25.0" prefWidth="159.0" />
+      <RadioButton fx:id="themeLight" layoutX="343.0" layoutY="386.0" mnemonicParsing="false" selected="true" text="Light" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="theme" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="themeDark" layoutX="405.0" layoutY="386.0" mnemonicParsing="false" text="Dark" textFill="WHITE" toggleGroup="$theme">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></RadioButton>
+      <Button fx:id="Register" layoutX="92.0" layoutY="321.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-border-radius: 45%; -fx-background-radius: 4em; -fx-background-color: #FFF; -fx-border-color: #FFF;" text="Register">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="86.0" layoutY="34.0" text="Registration" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
       <Label layoutX="50.0" layoutY="81.0" text="%key.username" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -53,11 +96,6 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Label>
-      <Button fx:id="Register" layoutX="92.0" layoutY="321.0" mnemonicParsing="false" onAction="#registerButtonOnAction" prefHeight="44.0" prefWidth="166.0" style="-fx-border-radius: 45%; -fx-background-radius: 4em; -fx-background-color: #FFF; -fx-border-color: #FFF;" text="Register">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <Label fx:id="PasswordDoesNotMatch" layoutX="166.0" layoutY="261.0" prefHeight="17.0" prefWidth="134.0" text=" ">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -70,22 +108,6 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="AddressA" layoutX="342.0" layoutY="99.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></TextField>
-      <TextField fx:id="AddressB" layoutX="342.0" layoutY="145.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></TextField>
-      <TextField fx:id="Postcode" layoutX="342.0" layoutY="189.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></TextField>
-      <TextField fx:id="City" layoutX="342.0" layoutY="235.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></TextField>
       <Label layoutX="342.0" layoutY="81.0" text="Address 1" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -111,28 +133,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <RadioButton fx:id="themeLight" layoutX="343.0" layoutY="386.0" mnemonicParsing="false" selected="true" text="Light" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="theme" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="themeDark" layoutX="405.0" layoutY="386.0" mnemonicParsing="false" text="Dark" textFill="WHITE" toggleGroup="$theme">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="langEnglish" layoutX="339.0" layoutY="56.0" mnemonicParsing="false" selected="true" text="English" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="lang" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="langPolish" layoutX="413.0" layoutY="56.0" mnemonicParsing="false" text="Polish" textFill="WHITE" toggleGroup="$lang">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></RadioButton>
       <Label layoutX="342.0" layoutY="35.0" text="Language" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -147,7 +147,5 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="Phone" layoutX="342.0" layoutY="279.0" prefHeight="25.0" prefWidth="159.0" />
-      <TextField fx:id="Email" layoutX="342.0" layoutY="321.0" prefHeight="25.0" prefWidth="159.0" />
    </children>
 </AnchorPane>
