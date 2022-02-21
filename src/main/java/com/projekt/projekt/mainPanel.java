@@ -87,7 +87,7 @@ public class mainPanel implements Initializable {
     Connection connection = null ;
     PreparedStatement preparedStatement = null ;
     ResultSet resultSet = null ;
-    tableFilmy film = null ;
+    tableFilmy film = new tableFilmy();
     tableGatunki gatunek = null ;
     tableRezyseria rezyser = null ;
     tableAktorzy aktor = null ;
@@ -120,6 +120,7 @@ public void refreshTable(){
                     rs.getString("gatunek_nazwa"),
                     rs.getString("rezyser_imie")+" "+rs.getString("rezyser_nazwisko"),
                     rs.getString("aktor_imie")+" "+rs.getString("aktor_nazwisko")));
+            table_film.setItems(oblist);
         }
 
     } catch (SQLException e) {
@@ -271,32 +272,39 @@ public void refreshTable(){
 
                         });
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
+                            if(table_film.getSelectionModel().getSelectedItem()==null){}
+                                else{
+                                 film = table_film.getSelectionModel().getSelectedItem();
+                                DatabaseConnection connectNow = new DatabaseConnection();
+                                Connection connectDB = connectNow.getConnection();
+                                FXMLLoader loader = new FXMLLoader();
+                                loader.setLocation(getClass().getResource("addFilm.fxml"));
+                                try {
+                                    loader.load();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
 
-                            film = table_film.getSelectionModel().getSelectedItem();
-                            DatabaseConnection connectNow = new DatabaseConnection();
-                            Connection connectDB = connectNow.getConnection();
-                            FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("com/projekt/projekt/addFilm.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                                AddFilm addFilmController = loader.getController();
+                                addFilmController.setUpdate(true);
+                                addFilmController.setTextField(
+                                        film.getId(),
+                                        film.getTytul(),
+                                        film.getRok(),
+                                        film.getJezyk(),
+                                        film.getCena(),
+                                        film.getGatunek(),
+                                        film.getRezyser(),
+                                        film.getAktor()
+                                        );
+                                Parent parent = loader.getRoot();
+                                Stage stage = new Stage();
+                                stage.setScene(new Scene(parent));
+                                stage.initStyle(StageStyle.UTILITY);
+                                stage.show();
+                                }
                             }
-
-                            AddFilm addFilmController = loader.getController();
-                            addFilmController.setUpdate(true);
-                            addFilmController.setTextField(
-                                    film.getId(),film.getTytul(),film.getRok(),film.getJezyk(),film.getCena(),film.getGatunek(),film.getRezyser(),film.getAktor());
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-
-
-
-
-                        });
+                        );
 
                         HBox managebtn = new HBox(editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");

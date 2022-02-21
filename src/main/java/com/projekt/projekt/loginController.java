@@ -54,7 +54,7 @@ public class loginController{
                     try{
                         Parent root = FXMLLoader.load(getClass().getResource("mainPanel.fxml"));
                         Stage registerStage = new Stage();
-                        registerStage.setScene(new Scene(root,810,400));
+                        registerStage.setScene(new Scene(root,900,400));
                         registerStage.show();
                     }catch(Exception e){
                         e.printStackTrace();

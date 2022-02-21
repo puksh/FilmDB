@@ -21,8 +21,8 @@
                               <TableColumn fx:id="Acol_cena" prefWidth="35.0" text="Cena" />
                               <TableColumn fx:id="Acol_gatunek" prefWidth="112.0" text="Gatunek" />
                               <TableColumn fx:id="Acol_rezyser" prefWidth="129.0" text="Rezyser" />
-                              <TableColumn fx:id="Acol_glownyAktor" prefWidth="184.0" text="Glowny Aktor" />
-                              <TableColumn fx:id="Acol_edit" prefWidth="101.0" />
+                              <TableColumn fx:id="Acol_glownyAktor" prefWidth="151.0" text="Glowny Aktor" />
+                              <TableColumn fx:id="Acol_edit" prefWidth="134.0" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
