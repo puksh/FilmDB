@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="230.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.addDirector">
+   <children>
+      <Button fx:id="buttonConfirm" layoutX="74.0" layoutY="182.0" mnemonicParsing="false" onAction="#save" text="Confirm" />
+      <TextField fx:id="fieldFirstname" layoutX="26.0" layoutY="51.0" />
+      <TextField fx:id="fieldLastname" layoutX="26.0" layoutY="115.0" />
+      <Label layoutX="26.0" layoutY="28.0" text="Firstname" />
+      <Label layoutX="26.0" layoutY="92.0" text="Lastname" />
+   </children>
+</AnchorPane>

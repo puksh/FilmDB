@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -78,7 +75,12 @@ public class mainPanel implements Initializable {
     @FXML
     private TableColumn<tableGatunki, String> Dcol_nazwa;
 
+    @FXML
+    private TabPane tab;
+
+
     ObservableList<tableFilmy> oblist = FXCollections.observableArrayList();
+    ObservableList<tableFilmy> oblistFilmy = FXCollections.observableArrayList();
     ObservableList<tableAktorzy> oblistAktorzy = FXCollections.observableArrayList();
     ObservableList<tableGatunki> oblistGatunki = FXCollections.observableArrayList();
     ObservableList<tableRezyseria> oblistRezyseria = FXCollections.observableArrayList();
@@ -109,6 +111,9 @@ public void refreshTable(){
                 "INNER JOIN aktorzy ON aktorzy.aktor_id=f.film_glownyAktor \n" +
                 "INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser \n" +
                 "INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek");
+        ResultSet rsReal = connectDB.createStatement().executeQuery("\n" +
+                "SELECT *" +
+                "FROM filmy AS f \n");
 
         while (rs.next()) {
             oblist.add(new tableFilmy(
@@ -121,6 +126,17 @@ public void refreshTable(){
                     rs.getString("rezyser_imie")+" "+rs.getString("rezyser_nazwisko"),
                     rs.getString("aktor_imie")+" "+rs.getString("aktor_nazwisko")));
             table_film.setItems(oblist);
+        while(rsReal.next()) {
+            oblistFilmy.add(new tableFilmy(
+                    rsReal.getInt("film_id"),
+                    rsReal.getString("film_tytul"),
+                    rsReal.getString("film_rok"),
+                    rsReal.getString("film_jezyk"),
+                    rsReal.getString("film_cena"),
+                    rsReal.getString("film_gatunek"),
+                    rsReal.getString("film_rezyser"),
+                    rsReal.getString("film_glownyAktor")));
+        }
         }
 
     } catch (SQLException e) {
@@ -146,7 +162,7 @@ public void refreshTable(){
 
         while (rs.next()) {
             oblistAktorzy.add(new tableAktorzy(
-                    rs.getString("aktor_id"),
+                    rs.getInt("aktor_id"),
                     rs.getString("aktor_imie"),
                     rs.getString("aktor_nazwisko")));
         }
@@ -170,7 +186,7 @@ public void refreshTable(){
 
         while (rs.next()) {
             oblistRezyseria.add(new tableRezyseria(
-                    rs.getString("rezyser_id"),
+                    rs.getInt("rezyser_id"),
                     rs.getString("rezyser_imie"),
                     rs.getString("rezyser_nazwisko")));
         }
@@ -194,7 +210,7 @@ public void refreshTable(){
 
         while (rs.next()) {
             oblistGatunki.add(new tableGatunki(
-                    rs.getString("gatunek_id"),
+                    rs.getInt("gatunek_id"),
                     rs.getString("gatunek_nazwa")));
         }
 
@@ -206,6 +222,157 @@ public void refreshTable(){
     Dcol_nazwa.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
 
     table_gatunki.setItems(oblistGatunki);
+
+}
+
+public void update(){
+    {
+        if(tab.getSelectionModel().getSelectedItem().getText()=="Filmy"){
+            if(table_film.getSelectionModel().getSelectedItem()==null){}
+            else{
+                film = table_film.getSelectionModel().getSelectedItem();
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addFilm.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                AddFilm addFilmController = loader.getController();
+                addFilmController.setUpdate(true);
+                addFilmController.setTextField(
+                        film.getId(),
+                        film.getTytul(),
+                        film.getRok(),
+                        film.getJezyk(),
+                        film.getCena(),
+                        film.getGatunek(),
+                        film.getRezyser(),
+                        film.getAktor()
+                );
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Aktorzy"){
+            if(table_aktorzy.getSelectionModel().getSelectedItem()==null){}
+            else{
+                aktor = table_aktorzy.getSelectionModel().getSelectedItem();
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addActor.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                addActor addActorController = loader.getController();
+                addActorController.setUpdate(true);
+                addActorController.setTextField(
+                        aktor.getId(),
+                        aktor.getImie(),
+                        aktor.getNazwisko()
+                );
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Rezyseria"){
+            if(table_rezyseria.getSelectionModel().getSelectedItem()==null){}
+            else{
+                rezyser = table_rezyseria.getSelectionModel().getSelectedItem();
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addDirector.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                addDirector addDirectorController = loader.getController();
+                addDirectorController.setUpdate(true);
+                addDirectorController.setTextField(
+                        rezyser.getId(),
+                        rezyser.getImie(),
+                        rezyser.getNazwisko()
+                );
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Gatunki"){
+            if(table_gatunki.getSelectionModel().getSelectedItem()==null){}
+            else{
+                gatunek = table_gatunki.getSelectionModel().getSelectedItem();
+                DatabaseConnection connectNow = new DatabaseConnection();
+                Connection connectDB = connectNow.getConnection();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addGenre.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                addGenre addGenreController = loader.getController();
+                addGenreController.setUpdate(true);
+                addGenreController.setTextField(
+                        gatunek.getId(),
+                        gatunek.getNazwa()
+                );
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        }
+    }
+}
+
+public void delete(){
+    try {
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        if(tab.getSelectionModel().getSelectedItem().getText()=="Filmy"){
+            film = table_film.getSelectionModel().getSelectedItem();
+            query = "DELETE FROM `filmy` WHERE id  ="+film.getId();
+            ResultSet rs = connectDB.createStatement().executeQuery(query);
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Aktorzy"){
+            aktor = table_aktorzy.getSelectionModel().getSelectedItem();
+            query = "DELETE FROM `aktorzy` WHERE id  ="+aktor.getId();
+            ResultSet rsB = connectDB.createStatement().executeQuery(query);
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Rezyseria"){
+            rezyser = table_rezyseria.getSelectionModel().getSelectedItem();
+            query = "DELETE FROM `rezyserowie` WHERE id  ="+rezyser.getId();
+            ResultSet rsD = connectDB.createStatement().executeQuery(query);
+        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Gatunki"){
+            gatunek = table_gatunki.getSelectionModel().getSelectedItem();
+            query = "DELETE FROM `gatunki` WHERE id  ="+gatunek.getId();
+            ResultSet rsC = connectDB.createStatement().executeQuery(query);
+        }
+        refreshTable();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+public void add(){
+
 
 }
 
@@ -225,107 +392,6 @@ public void refreshTable(){
         Acol_glownyAktor.setCellValueFactory(new PropertyValueFactory<>("aktor"));
 
 
-        Callback<TableColumn<tableFilmy, String>, TableCell<tableFilmy, String>> cellFactory = (TableColumn<tableFilmy, String> param) -> {
-            // make cell containing buttons
-            final TableCell<tableFilmy, String> cell = new TableCell<tableFilmy, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
-
-                    } else {
-
-                        Button deleteIcon = new Button();
-                        Button editIcon = new Button();
-
-                        deleteIcon.setText("Delete");
-                        editIcon.setText("Edit");
-
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-fx-fill:#00E676;"
-                        );
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
-
-                            try {
-                                film = table_film.getSelectionModel().getSelectedItem();
-                                DatabaseConnection connectNow = new DatabaseConnection();
-                                Connection connectDB = connectNow.getConnection();
-                                query = "DELETE FROM `filmy` WHERE id  ="+film.getId();
-                                ResultSet rs = connectDB.createStatement().executeQuery(query);
-                                refreshTable();
-
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-
-
-
-
-
-                        });
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
-                            if(table_film.getSelectionModel().getSelectedItem()==null){}
-                                else{
-                                 film = table_film.getSelectionModel().getSelectedItem();
-                                DatabaseConnection connectNow = new DatabaseConnection();
-                                Connection connectDB = connectNow.getConnection();
-                                FXMLLoader loader = new FXMLLoader();
-                                loader.setLocation(getClass().getResource("addFilm.fxml"));
-                                try {
-                                    loader.load();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-                                AddFilm addFilmController = loader.getController();
-                                addFilmController.setUpdate(true);
-                                addFilmController.setTextField(
-                                        film.getId(),
-                                        film.getTytul(),
-                                        film.getRok(),
-                                        film.getJezyk(),
-                                        film.getCena(),
-                                        film.getGatunek(),
-                                        film.getRezyser(),
-                                        film.getAktor()
-                                        );
-                                Parent parent = loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.setScene(new Scene(parent));
-                                stage.initStyle(StageStyle.UTILITY);
-                                stage.show();
-                                }
-                            }
-                        );
-
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
-                        managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
-
-                        setGraphic(managebtn);
-                        setText(null);
-
-                    }
-
-                }
-
-            };
-            return cell;
-
-
-
-
-    };
-        Acol_edit.setCellFactory(cellFactory);
         table_film.setItems(oblist);
     }
 

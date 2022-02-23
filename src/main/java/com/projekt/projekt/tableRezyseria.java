@@ -1,21 +1,21 @@
 package com.projekt.projekt;
 
 public class tableRezyseria {
-    private String id;
+    private int id;
     private String imie;
     private String nazwisko;
 
-    public tableRezyseria(String id, String imie, String nazwisko) {
+    public tableRezyseria(int id, String imie, String nazwisko) {
         this.id = id;
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

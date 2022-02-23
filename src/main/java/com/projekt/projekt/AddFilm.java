@@ -37,6 +37,7 @@ public class AddFilm {
     private boolean update;
     int filmId;
 
+    @FXML
     private void save(MouseEvent event) {
 
         connection = DatabaseConnection.getConnection();

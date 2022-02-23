@@ -1,6 +1,6 @@
 .button{
     -fx-background-color: transparent;
-    -fx-color: #FFF;
+    -fx-text-fill: WHITE;
     -fx-border-color: #000;
     -fx-border-radius: 35%;
 }

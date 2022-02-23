@@ -77,6 +77,6 @@
          </font>
       </TextField>
       <Label layoutX="372.0" layoutY="14.0" text="Id Values" />
-      <Button fx:id="buttonConfirm" layoutX="397.0" layoutY="188.0" mnemonicParsing="false" text="Confirm" />
+      <Button fx:id="buttonConfirm" layoutX="397.0" layoutY="188.0" mnemonicParsing="false" onAction="#save" text="Confirm" />
    </children>
 </AnchorPane>
