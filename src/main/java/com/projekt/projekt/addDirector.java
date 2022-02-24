@@ -27,8 +27,7 @@ public class addDirector {
     private boolean update;
     int rezyserid;
 
-    @FXML
-    private void save(MouseEvent event) {
+    public void save() {
 
         connection = DatabaseConnection.getConnection();
         String firstname = fieldFirstname.getText();

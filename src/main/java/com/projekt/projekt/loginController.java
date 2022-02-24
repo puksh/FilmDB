@@ -19,10 +19,6 @@ import java.util.ResourceBundle;
 public class loginController{
 
     @FXML
-    private Button ButtonLogin;
-    @FXML
-    private Button ButtonRegister;
-    @FXML
     private Label loginMessageLabel;
     @FXML
     private TextField TextFieldUsername;
@@ -76,6 +72,18 @@ public class loginController{
             Parent root = FXMLLoader.load(getClass().getResource("loginForm.fxml"),bundle);
             Stage registerStage = new Stage();
             registerStage.setScene(new Scene(root,550,323));
+            registerStage.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+    public void guest(){
+        loginMessageLabel.setText("Logging in as guest");
+        try{
+            Parent root = FXMLLoader.load(getClass().getResource("mainPanel.fxml"));
+            Stage registerStage = new Stage();
+            registerStage.setScene(new Scene(root,900,400));
             registerStage.show();
         }catch(Exception e){
             e.printStackTrace();

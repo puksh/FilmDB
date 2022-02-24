@@ -37,8 +37,7 @@ public class AddFilm {
     private boolean update;
     int filmId;
 
-    @FXML
-    private void save(MouseEvent event) {
+    public void save() {
 
         connection = DatabaseConnection.getConnection();
         String title = fieldTitle.getText();
@@ -79,7 +78,7 @@ public class AddFilm {
 
         if (update == false) {
 
-            query = "INSERT INTO `filmy` ( `film_tytul`, `film_rok`, `film_jezyk`, `film_cena`,`film_genre`,`film_rezyser`,`film_glownyAktor`) VALUES (?,?,?,?,?,?,?)";
+            query = "INSERT INTO `filmy` ( `film_tytul`, `film_rok`, `film_jezyk`, `film_cena`,`film_gatunek`,`film_rezyser`,`film_glownyAktor`) VALUES (?,?,?,?,?,?,?)";
 
         }else{
             query = "UPDATE `filmy` SET "
@@ -87,7 +86,7 @@ public class AddFilm {
                     + "`film_rok`=?,"
                     + "`film_jezyk`=?,"
                     + "`film_cena`=?,"
-                    + "`film_genre`=?,"
+                    + "`film_gatunek`=?,"
                     + "`film_rezyser`=?,"
                     + "`film_glownyAktor`= ? WHERE film_id = '"+ filmId +"'";
         }

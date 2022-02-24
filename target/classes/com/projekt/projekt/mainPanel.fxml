@@ -5,112 +5,103 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="403.0" prefWidth="895.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.mainPanel">
-   <children>
-      <TabPane fx:id="tab" prefHeight="217.0" prefWidth="895.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab fx:id="filmy" closable="false" text="Filmy">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="table_film" prefHeight="200.0" prefWidth="895.0">
-                          <columns>
-                              <TableColumn fx:id="Acol_id" prefWidth="27.0" text="Lp" />
-                              <TableColumn fx:id="Acol_tytul" prefWidth="196.0" text="Tytul" />
-                              <TableColumn fx:id="Acol_rok" minWidth="0.0" prefWidth="59.0" text="Rok" />
-                              <TableColumn fx:id="Acol_jezyk" prefWidth="49.0" text="Jezyk" />
-                              <TableColumn fx:id="Acol_cena" prefWidth="35.0" text="Cena" />
-                              <TableColumn fx:id="Acol_gatunek" prefWidth="112.0" text="Gatunek" />
-                              <TableColumn fx:id="Acol_rezyser" prefWidth="129.0" text="Rezyser" />
-                              <TableColumn fx:id="Acol_glownyAktor" prefWidth="151.0" text="Glowny Aktor" />
-                              <TableColumn fx:id="Acol_edit" prefWidth="134.0" />
-                          </columns>
-                        </TableView>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-            <Tab fx:id="aktorzy" closable="false" text="Aktorzy">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="table_aktorzy" prefHeight="200.0" prefWidth="806.0">
-                          <columns>
-                              <TableColumn fx:id="Bcol_id" prefWidth="27.0" text="Lp" />
-                              <TableColumn fx:id="Bcol_imie" prefWidth="100.0" text="Imie" />
-                              <TableColumn fx:id="Bcol_nazwisko" minWidth="0.0" prefWidth="383.0" text="Nazwisko" />
-                          </columns>
-                        </TableView>
-                     </children></AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="rezyseria" closable="false" text="Rezyseria">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="table_rezyseria" prefHeight="200.0" prefWidth="806.0">
-                          <columns>
-                                <TableColumn fx:id="Ccol_id" prefWidth="27.0" text="Lp" />
-                                <TableColumn fx:id="Ccol_imie" prefWidth="100.0" text="Imie" />
-                                <TableColumn fx:id="Ccol_nazwisko" prefWidth="383.0" text="Nazwisko" />
-                          </columns>
-                        </TableView>
-                     </children></AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="gatunki" closable="false" text="Gatunki">
-                <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="table_gatunki" prefHeight="200.0" prefWidth="806.0">
-                          <columns>
-                              <TableColumn fx:id="Dcol_id" prefWidth="27.0" text="Lp" />
-                              <TableColumn fx:id="Dcol_nazwa" prefWidth="383.0" text="Nazwa" />
-                          </columns>
-                        </TableView>
-                     </children></AnchorPane>
-                </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="895.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
-         <children>
-            <Button fx:id="buttonLogout" layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="buttonShop" layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Button>
-            <Label layoutX="669.0" layoutY="14.0" text="Wallet:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelWallet" alignment="BOTTOM_LEFT" layoutX="720.0" layoutY="14.0" prefHeight="17.0" prefWidth="37.0" text="0" textAlignment="RIGHT">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="763.0" layoutY="14.0" text="PLN">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Button fx:id="buttonRefresh" layoutX="18.0" layoutY="10.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonEdit" layoutX="86.0" layoutY="11.0" mnemonicParsing="false" onAction="#update" text="Edit" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="buttonDelete" layoutX="141.0" layoutY="11.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
-   </children>
+    <TabPane fx:id="tab" prefHeight="217.0" prefWidth="895.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab closable="false" text="Filmy">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="table_film" prefHeight="200.0" prefWidth="895.0">
+                    <columns>
+                        <TableColumn fx:id="Acol_id" prefWidth="27.0" text="Lp" />
+                        <TableColumn fx:id="Acol_tytul" prefWidth="196.0" text="Tytul" />
+                        <TableColumn fx:id="Acol_rok" minWidth="0.0" prefWidth="59.0" text="Rok" />
+                        <TableColumn fx:id="Acol_jezyk" prefWidth="49.0" text="Jezyk" />
+                        <TableColumn fx:id="Acol_cena" prefWidth="35.0" text="Cena" />
+                        <TableColumn fx:id="Acol_gatunek" prefWidth="112.0" text="Gatunek" />
+                        <TableColumn fx:id="Acol_rezyser" prefWidth="129.0" text="Rezyser" />
+                        <TableColumn fx:id="Acol_glownyAktor" prefWidth="151.0" text="Glowny Aktor" />
+                        <TableColumn fx:id="Acol_edit" prefWidth="134.0" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab closable="false" text="Aktorzy">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="table_aktorzy" prefHeight="200.0" prefWidth="806.0">
+                    <columns>
+                        <TableColumn fx:id="Bcol_id" prefWidth="27.0" text="Lp" />
+                        <TableColumn fx:id="Bcol_imie" prefWidth="100.0" text="Imie" />
+                        <TableColumn fx:id="Bcol_nazwisko" minWidth="0.0" prefWidth="383.0" text="Nazwisko" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab closable="false" text="Rezyseria">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="table_rezyseria" prefHeight="200.0" prefWidth="806.0">
+                    <columns>
+                        <TableColumn fx:id="Ccol_id" prefWidth="27.0" text="Lp" />
+                        <TableColumn fx:id="Ccol_imie" prefWidth="100.0" text="Imie" />
+                        <TableColumn fx:id="Ccol_nazwisko" prefWidth="383.0" text="Nazwisko" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab closable="false" text="Gatunki">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="table_gatunki" prefHeight="200.0" prefWidth="806.0">
+                    <columns>
+                        <TableColumn fx:id="Dcol_id" prefWidth="27.0" text="Lp" />
+                        <TableColumn fx:id="Dcol_nazwa" prefWidth="383.0" text="Nazwa" />
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+    <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="895.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
+        <Button layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="26.0" />
+            </font>
+        </Button>
+        <Label layoutX="669.0" layoutY="14.0" text="Wallet:">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label alignment="BOTTOM_LEFT" layoutX="720.0" layoutY="14.0" prefHeight="17.0" prefWidth="37.0" text="0" textAlignment="RIGHT">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label layoutX="763.0" layoutY="14.0" text="PLN">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Button layoutX="373.0" layoutY="133.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="buttonEdit" layoutX="81.0" layoutY="18.0" mnemonicParsing="false" onAction="#update" text="Edit" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button layoutX="16.0" layoutY="18.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button layoutX="130.0" layoutY="18.0" mnemonicParsing="false" onAction="#add" text="Add">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ToggleButton fx:id="toggle" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#editMode" text="Edit mode" />
+    </AnchorPane>
 </AnchorPane>

@@ -4,6 +4,9 @@
     -fx-border-color: #000;
     -fx-border-radius: 35%;
 }
+.button:disabled{
+    -fx-opacity:0.4;
+}
 .table-view, .tree-table-view {
     -fx-table-header-border-color: transparent;
     -fx-table-cell-border-color: -fx-box-border; /* Horizontal Lines*/

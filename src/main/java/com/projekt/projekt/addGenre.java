@@ -26,13 +26,12 @@ public class addGenre {
     private boolean update;
     int gatunekid;
 
-    @FXML
-    private void save(MouseEvent event) {
+    public void save() {
 
         connection = DatabaseConnection.getConnection();
-        String firstname = fieldName.getText();
+        String name = fieldName.getText();
 
-        if (firstname.isEmpty()) {
+        if (name.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setContentText("Please fill all data");
@@ -59,7 +58,7 @@ public class addGenre {
             query = "INSERT INTO `gatunki` ( `gatunek_nazwa`) VALUES (?)";
 
         }else{
-            query = "UPDATE `filmy` SET "
+            query = "UPDATE `gatunki` SET "
                     + "`gatunek_nazwa`= ? WHERE gatunek_id = '"+ gatunekid +"'";
         }
 

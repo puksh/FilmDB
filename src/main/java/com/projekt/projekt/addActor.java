@@ -27,8 +27,7 @@ public class addActor {
     private boolean update;
     int aktorid;
 
-    @FXML
-    private void save(MouseEvent event) {
+    public void save() {
 
         connection = DatabaseConnection.getConnection();
         String firstname = fieldFirstname.getText();
@@ -62,7 +61,7 @@ public class addActor {
             query = "INSERT INTO `aktorzy` ( `aktor_imie`, `aktor_nazwisko`) VALUES (?,?)";
 
         }else{
-            query = "UPDATE `filmy` SET "
+            query = "UPDATE `aktorzy` SET "
                     + "`aktor_imie`=?,"
                     + "`aktor_nazwisko`= ? WHERE aktor_id = '"+ aktorid +"'";
         }

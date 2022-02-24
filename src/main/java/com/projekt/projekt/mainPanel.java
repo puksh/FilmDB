@@ -5,24 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -47,8 +38,6 @@ public class mainPanel implements Initializable {
     private TableColumn<tableFilmy, String> Acol_rezyser;
     @FXML
     private TableColumn<tableFilmy, String> Acol_glownyAktor;
-    @FXML
-    private TableColumn<tableFilmy, String> Acol_edit;
 
     @FXML
     private TableView<tableAktorzy> table_aktorzy;
@@ -74,10 +63,13 @@ public class mainPanel implements Initializable {
     private TableColumn<tableGatunki, String> Dcol_id;
     @FXML
     private TableColumn<tableGatunki, String> Dcol_nazwa;
-
+    @FXML
+    private Button buttonEdit;
     @FXML
     private TabPane tab;
 
+    @FXML
+    private ToggleButton toggle;
 
     ObservableList<tableFilmy> oblist = FXCollections.observableArrayList();
     ObservableList<tableFilmy> oblistFilmy = FXCollections.observableArrayList();
@@ -87,23 +79,72 @@ public class mainPanel implements Initializable {
 
     String query = null;
     Connection connection = null ;
-    PreparedStatement preparedStatement = null ;
-    ResultSet resultSet = null ;
     tableFilmy film = new tableFilmy();
     tableGatunki gatunek = null ;
     tableRezyseria rezyser = null ;
     tableAktorzy aktor = null ;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        loadData();
+    public void initialize(URL location, ResourceBundle resources){loadData(); buttonEdit.setStyle("-fx-opacity:0.5");
+    }
+
+    public void editMode() throws SQLException {
+        if(toggle.isSelected()){
+            buttonEdit.setStyle("-fx-opacity:1");
+            buttonEdit.setDisable(false);
+            Connection connectDB = DatabaseConnection.getConnection();
+            ResultSet rsReal = connectDB.createStatement().executeQuery("\n" +
+                    "SELECT *" +
+                    "FROM filmy AS f \n");
+            while(rsReal.next()) {
+                oblistFilmy.add(new tableFilmy(
+                        rsReal.getInt("film_id"),
+                        rsReal.getString("film_tytul"),
+                        rsReal.getString("film_rok"),
+                        rsReal.getString("film_jezyk"),
+                        rsReal.getString("film_cena"),
+                        rsReal.getString("film_gatunek"),
+                        rsReal.getString("film_rezyser"),
+                        rsReal.getString("film_glownyAktor")));
+            }
+            table_film.setItems(oblistFilmy);
+        }else{
+            buttonEdit.setDisable(true);
+            buttonEdit.setStyle("-fx-opacity:0.5");
+            Connection connectDB = DatabaseConnection.getConnection();
+            ResultSet rs = connectDB.createStatement().executeQuery("\n" +
+                    "SELECT f.film_id,f.film_tytul,f.film_rok,f.film_jezyk,f.film_cena,gatunki.gatunek_nazwa," +
+                    "rezyserowie.rezyser_imie,rezyserowie.rezyser_nazwisko,aktorzy.aktor_imie,aktorzy.aktor_nazwisko \n" +
+                    "FROM filmy AS f \n" +
+                    "INNER JOIN aktorzy ON aktorzy.aktor_id=f.film_glownyAktor \n" +
+                    "INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser \n" +
+                    "INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek");
+
+            while (rs.next()) {
+                oblist.add(new tableFilmy(
+                        rs.getInt("film_id"),
+                        rs.getString("film_tytul"),
+                        rs.getString("film_rok"),
+                        rs.getString("film_jezyk"),
+                        rs.getString("film_cena"),
+                        rs.getString("gatunek_nazwa"),
+                        rs.getString("rezyser_imie")+" "+rs.getString("rezyser_nazwisko"),
+                        rs.getString("aktor_imie")+" "+rs.getString("aktor_nazwisko")));
+                table_film.setItems(oblist);
+            }
+        }
+
     }
 
 public void refreshTable(){
     //Uzupelnianie tabelki z filmami
+    table_film.getItems().clear();
+    table_aktorzy.getItems().clear();
+    table_rezyseria.getItems().clear();
+    table_gatunki.getItems().clear();
+
     try {
-        DatabaseConnection connectNow = new DatabaseConnection();
-        Connection connectDB = connectNow.getConnection();
+        Connection connectDB = DatabaseConnection.getConnection();
         ResultSet rs = connectDB.createStatement().executeQuery("\n" +
                 "SELECT f.film_id,f.film_tytul,f.film_rok,f.film_jezyk,f.film_cena,gatunki.gatunek_nazwa," +
                 "rezyserowie.rezyser_imie,rezyserowie.rezyser_nazwisko,aktorzy.aktor_imie,aktorzy.aktor_nazwisko \n" +
@@ -111,9 +152,6 @@ public void refreshTable(){
                 "INNER JOIN aktorzy ON aktorzy.aktor_id=f.film_glownyAktor \n" +
                 "INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser \n" +
                 "INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek");
-        ResultSet rsReal = connectDB.createStatement().executeQuery("\n" +
-                "SELECT *" +
-                "FROM filmy AS f \n");
 
         while (rs.next()) {
             oblist.add(new tableFilmy(
@@ -126,17 +164,7 @@ public void refreshTable(){
                     rs.getString("rezyser_imie")+" "+rs.getString("rezyser_nazwisko"),
                     rs.getString("aktor_imie")+" "+rs.getString("aktor_nazwisko")));
             table_film.setItems(oblist);
-        while(rsReal.next()) {
-            oblistFilmy.add(new tableFilmy(
-                    rsReal.getInt("film_id"),
-                    rsReal.getString("film_tytul"),
-                    rsReal.getString("film_rok"),
-                    rsReal.getString("film_jezyk"),
-                    rsReal.getString("film_cena"),
-                    rsReal.getString("film_gatunek"),
-                    rsReal.getString("film_rezyser"),
-                    rsReal.getString("film_glownyAktor")));
-        }
+
         }
 
     } catch (SQLException e) {
@@ -225,14 +253,12 @@ public void refreshTable(){
 
 }
 
-public void update(){
+public void update() throws SQLException {
     {
-        if(tab.getSelectionModel().getSelectedItem().getText()=="Filmy"){
+        if(tab.getSelectionModel().getSelectedIndex()==0){
             if(table_film.getSelectionModel().getSelectedItem()==null){}
             else{
                 film = table_film.getSelectionModel().getSelectedItem();
-                DatabaseConnection connectNow = new DatabaseConnection();
-                Connection connectDB = connectNow.getConnection();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("addFilm.fxml"));
                 try {
@@ -259,12 +285,10 @@ public void update(){
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
             }
-        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Aktorzy"){
+        }else if(tab.getSelectionModel().getSelectedIndex()==1){
             if(table_aktorzy.getSelectionModel().getSelectedItem()==null){}
             else{
                 aktor = table_aktorzy.getSelectionModel().getSelectedItem();
-                DatabaseConnection connectNow = new DatabaseConnection();
-                Connection connectDB = connectNow.getConnection();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("addActor.fxml"));
                 try {
@@ -286,12 +310,10 @@ public void update(){
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
             }
-        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Rezyseria"){
+        }else if(tab.getSelectionModel().getSelectedIndex()==2){
             if(table_rezyseria.getSelectionModel().getSelectedItem()==null){}
             else{
                 rezyser = table_rezyseria.getSelectionModel().getSelectedItem();
-                DatabaseConnection connectNow = new DatabaseConnection();
-                Connection connectDB = connectNow.getConnection();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("addDirector.fxml"));
                 try {
@@ -313,12 +335,10 @@ public void update(){
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
             }
-        }else if(tab.getSelectionModel().getSelectedItem().getText()=="Gatunki"){
+        }else if(tab.getSelectionModel().getSelectedIndex()==3){
             if(table_gatunki.getSelectionModel().getSelectedItem()==null){}
             else{
                 gatunek = table_gatunki.getSelectionModel().getSelectedItem();
-                DatabaseConnection connectNow = new DatabaseConnection();
-                Connection connectDB = connectNow.getConnection();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("addGenre.fxml"));
                 try {
@@ -339,6 +359,69 @@ public void update(){
                 stage.initStyle(StageStyle.UTILITY);
                 stage.show();
             }
+        }
+    }
+}
+
+public void add(){
+    {
+        if(tab.getSelectionModel().getSelectedIndex()==0){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addFilm.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        else if(tab.getSelectionModel().getSelectedIndex()==1){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addActor.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        else if(tab.getSelectionModel().getSelectedIndex()==2){
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addDirector.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+            }
+        else if(tab.getSelectionModel().getSelectedIndex()==3){
+                gatunek = table_gatunki.getSelectionModel().getSelectedItem();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("addGenre.fxml"));
+                try {
+                    loader.load();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Parent parent = loader.getRoot();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(parent));
+                stage.initStyle(StageStyle.UTILITY);
+                stage.show();
+
         }
     }
 }
@@ -369,11 +452,6 @@ public void delete(){
     } catch (SQLException e) {
         e.printStackTrace();
     }
-}
-
-public void add(){
-
-
 }
 
 
