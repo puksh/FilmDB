@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="403.0" prefWidth="895.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.mainPanel">
+<AnchorPane prefHeight="403.0" prefWidth="895.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.mainPanel">
     <TabPane fx:id="tab" prefHeight="217.0" prefWidth="895.0" tabClosingPolicy="UNAVAILABLE">
         <Tab closable="false" text="Filmy">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -56,17 +56,37 @@
             </AnchorPane>
         </Tab>
     </TabPane>
-    <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="895.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css">
-        <Button layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
+    <AnchorPane layoutY="218.0" prefHeight="185.0" prefWidth="895.0" stylesheets="@../../../css/styles.css">
+        <Button layoutX="16.0" layoutY="18.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
+        <Button fx:id="buttonEdit" layoutX="81.0" layoutY="18.0" mnemonicParsing="false" onAction="#update" text="Edit" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button layoutX="130.0" layoutY="18.0" mnemonicParsing="false" onAction="#add" text="Add">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ToggleButton fx:id="toggle" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#editMode" text="Edit mode" />
         <Button layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
         </Button>
+        <Button layoutX="14.0" layoutY="146.0" mnemonicParsing="false" text="Logout" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+      <Button layoutX="89.0" layoutY="146.0" mnemonicParsing="false" onAction="#usersmenu" text="Users">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
         <Label layoutX="669.0" layoutY="14.0" text="Wallet:">
             <font>
                 <Font name="System Bold" size="12.0" />
@@ -82,26 +102,5 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Label>
-        <Button layoutX="373.0" layoutY="133.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-        <Button fx:id="buttonEdit" layoutX="81.0" layoutY="18.0" mnemonicParsing="false" onAction="#update" text="Edit" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-        <Button layoutX="16.0" layoutY="18.0" mnemonicParsing="false" onAction="#delete" text="Delete" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-        </Button>
-      <Button layoutX="130.0" layoutY="18.0" mnemonicParsing="false" onAction="#add" text="Add">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <ToggleButton fx:id="toggle" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#editMode" text="Edit mode" />
     </AnchorPane>
 </AnchorPane>

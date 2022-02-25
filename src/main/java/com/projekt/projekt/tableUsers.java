@@ -1,7 +1,7 @@
 package com.projekt.projekt;
 
-public class userInfo {
-    private String id;
+public class tableUsers {
+    private int id, admin;
     private String username;
     private String firstname;
     private String lastname;
@@ -10,12 +10,13 @@ public class userInfo {
     private String phone;
     private String postcode;
     private String city,email;
+    private String password;
     private String theme;
-    private String language,admin;
+    private String language;
 
-    public userInfo(String id, String username, String firstname, String lastname,
-                    String addressA, String addressB, String phone, String postcode,
-                    String city, String email, String theme, String language, String admin) {
+    public tableUsers(int id, String username, String firstname, String lastname,
+                      String addressA, String addressB, String phone, String postcode,
+                      String city, String email,String password, String theme, String language, int admin) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;
@@ -26,12 +27,13 @@ public class userInfo {
         this.postcode = postcode;
         this.city = city;
         this.email = email;
+        this.password = password;
         this.theme = theme;
         this.language = language;
         this.admin = admin;
     }
-    public userInfo(){
-        this.id = " ";
+    public tableUsers(){
+        this.id = 0;
         this.username = " ";
         this.firstname = " ";
         this.lastname = " ";
@@ -41,16 +43,17 @@ public class userInfo {
         this.postcode = " ";
         this.city = " ";
         this.email = " ";
+        this.password = " ";
         this.theme = " ";
         this.language = " ";
-        this.admin = " ";
+        this.admin = 0;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -142,11 +145,11 @@ public class userInfo {
         this.language = language;
     }
 
-    public String getAdmin() {
+    public int getAdmin() {
         return admin;
     }
 
-    public void setAdmin(String admin) {
+    public void setAdmin(int admin) {
         this.admin = admin;
     }
 }

@@ -85,8 +85,7 @@ public class mainPanel implements Initializable {
     tableAktorzy aktor = null ;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources){loadData(); buttonEdit.setStyle("-fx-opacity:0.5");
-    }
+    public void initialize(URL location, ResourceBundle resources){loadData(); buttonEdit.setStyle("-fx-opacity:0.5");}
 
     public void editMode() throws SQLException {
         if(toggle.isSelected()){
@@ -142,6 +141,9 @@ public void refreshTable(){
     table_aktorzy.getItems().clear();
     table_rezyseria.getItems().clear();
     table_gatunki.getItems().clear();
+
+    buttonEdit.setDisable(true);
+    buttonEdit.setStyle("-fx-opacity:0.5");
 
     try {
         Connection connectDB = DatabaseConnection.getConnection();
@@ -250,6 +252,23 @@ public void refreshTable(){
     Dcol_nazwa.setCellValueFactory(new PropertyValueFactory<>("nazwa"));
 
     table_gatunki.setItems(oblistGatunki);
+
+}
+
+public void usersmenu(){
+
+    FXMLLoader loader = new FXMLLoader();
+    loader.setLocation(getClass().getResource("users.fxml"));
+    try {
+        loader.load();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    Parent parent = loader.getRoot();
+    Stage stage = new Stage();
+    stage.setScene(new Scene(parent));
+    stage.initStyle(StageStyle.UTILITY);
+    stage.show();
 
 }
 

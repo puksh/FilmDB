@@ -2,19 +2,17 @@ package com.projekt.projekt;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
-import java.util.ResourceBundle;
 
 public class startupPanel {
     @FXML
     private Button english;
     @FXML
     private Button polish;
+    @FXML
+    private AnchorPane startupPanel;
 
     public void ButtonPolish(ActionEvent event){
 
@@ -26,11 +24,10 @@ public class startupPanel {
 
         //load login panel
         loginController english = new loginController();
-        userInfo currentUser = new userInfo();
+        tableUsers currentUser = new tableUsers();
         currentUser.setLanguage("en");
         english.loginForm();
     }
-
 
 
 }

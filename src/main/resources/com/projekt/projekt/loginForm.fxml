@@ -22,16 +22,16 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="ButtonLogin" layoutX="440.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ButtonLoginOnAction" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #000; -fx-border-color: #000;" text="%key.login">
+      <Button fx:id="ButtonLogin" layoutX="440.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#ButtonLoginOnAction" prefHeight="27.0" prefWidth="74.0" style="-fx-background-color: #FFF; -fx-border-color: #000; -fx-text-fill: #000; -fx-background-radius: 35%;" text="%key.login">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Label fx:id="projectName" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="13.0" prefHeight="54.0" prefWidth="470.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="projectName" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="13.0" prefHeight="54.0" prefWidth="470.0" text="Cherrybloss" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <Button layoutX="413.0" layoutY="251.0" mnemonicParsing="false" onAction="#guest" style="-fx-background-color: BLACK;" text="Login as guest">
+      <Button layoutX="413.0" layoutY="251.0" mnemonicParsing="false" onAction="#guest" style="-fx-background-color: #FFF; -fx-text-fill: #000; -fx-background-radius: 35%;" text="Login as guest">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
