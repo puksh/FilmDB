@@ -32,15 +32,10 @@ public class usersController implements Initializable {
         }
     }
     public void loadData() throws SQLException {
-
-        tableUsers.getItems().clear();
-
-        Connection connectDB = DatabaseConnection.getConnection();
-        ResultSet rsReal = connectDB.createStatement().executeQuery("\n" +
-                "SELECT *" +
-                "FROM users AS f \n");
-        while(rsReal.next()) {
-            users.add(new tableUsers(
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection connectDB = connectNow.getConnection();
+        ResultSet rsReal = connectDB.createStatement().executeQuery("SELECT * FROM users");
+        while(rsReal.next()) {users.add(new tableUsers(
                     rsReal.getInt("user_id"),
                     rsReal.getString("user_username"),
                     rsReal.getString("user_firstname"),

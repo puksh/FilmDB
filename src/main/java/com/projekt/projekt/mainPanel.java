@@ -96,6 +96,7 @@ public class mainPanel implements Initializable {
                     "SELECT *" +
                     "FROM filmy AS f \n");
             while(rsReal.next()) {
+                table_film.getItems().clear();
                 oblistFilmy.add(new tableFilmy(
                         rsReal.getInt("film_id"),
                         rsReal.getString("film_tytul"),
@@ -119,6 +120,8 @@ public class mainPanel implements Initializable {
                     "INNER JOIN rezyserowie ON rezyserowie.rezyser_id=f.film_rezyser \n" +
                     "INNER JOIN gatunki ON gatunki.gatunek_id=f.film_gatunek");
 
+
+            table_film.getItems().clear();
             while (rs.next()) {
                 oblist.add(new tableFilmy(
                         rs.getInt("film_id"),
