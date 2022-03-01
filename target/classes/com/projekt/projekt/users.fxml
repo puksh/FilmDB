@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="255.0" prefWidth="1040.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #dc143c, #FFF);" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projekt.projekt.usersController">
+   <children>
+      <TableView fx:id="tableUsers" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="1011.0">
+        <columns>
+          <TableColumn prefWidth="26.0" text="Lp" />
+          <TableColumn prefWidth="98.0" text="username" />
+            <TableColumn prefWidth="101.0" text="firstname" />
+            <TableColumn prefWidth="75.0" text="lastname" />
+            <TableColumn prefWidth="75.0" text="addressA" />
+            <TableColumn prefWidth="75.0" text="addressB" />
+            <TableColumn prefWidth="75.0" text="phone" />
+            <TableColumn prefWidth="75.0" text="postcode" />
+            <TableColumn prefWidth="75.0" text="city" />
+            <TableColumn prefWidth="75.0" text="email" />
+            <TableColumn prefWidth="75.0" text="password" />
+            <TableColumn prefWidth="75.0" text="theme" />
+            <TableColumn minWidth="0.0" prefWidth="62.0" text="language" />
+            <TableColumn prefWidth="48.0" text="admin" />
+        </columns>
+      </TableView>
+      <Button fx:id="add" layoutX="1000.0" layoutY="221.0" mnemonicParsing="false" text="+" />
+      <Button fx:id="delete" layoutX="14.0" layoutY="221.0" mnemonicParsing="false" text="-" />
+      <Button fx:id="promote" layoutX="930.0" layoutY="221.0" mnemonicParsing="false" text="Promote" />
+   </children>
+</AnchorPane>

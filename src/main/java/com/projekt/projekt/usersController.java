@@ -59,39 +59,38 @@ public class usersController implements Initializable {
         tableUsers.setItems(users);
     }
 
-//    public void edit() {
-//        if (tableUsers.getSelectionModel().getSelectedItem() == null) {
-//        } else {
-//            user = tableUsers.getSelectionModel().getSelectedItem();
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource("addUser.fxml"));
-//            try {
-//                loader.load();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            AddUser addUserController = loader.getController();
-//            addUserController.setUpdate(true);
-//            addUserController.setTextField(
-//                    user.getId(),
-//                    user.getUsername(),
-//                    user.getFirstname(),
-//                    user.getLastname(),
-//                    user.getAddressA(),
-//                    user.getAddressB(),
-//                    user.getPhone(),
-//                    user.getPostcode(),
-//                    user.getCity(),
-//                    user.getEmail(),
-//                    user.getPassword(),
-//                    user.getPostcode()
-//            );
-//            Parent parent = loader.getRoot();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(parent));
-//            stage.initStyle(StageStyle.UTILITY);
-//            stage.show();
-//        }
-//    }
+    public void edit() {
+        if (tableUsers.getSelectionModel().getSelectedItem() == null) {
+        } else {
+            user = tableUsers.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("registerForm.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            registerForm addUserController = loader.getController();
+            addUserController.setTextField(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getFirstname(),
+                    user.getLastname(),
+                    user.getAddressA(),
+                    user.getAddressB(),
+                    user.getPhone(),
+                    user.getPostcode(),
+                    user.getCity(),
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getPostcode()
+            );
+            Parent parent = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.initStyle(StageStyle.UTILITY);
+            stage.show();
+        }
+    }
 }

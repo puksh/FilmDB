@@ -73,7 +73,7 @@
          </font>
       </Button>
       <ToggleButton fx:id="toggle" layoutX="14.0" layoutY="55.0" mnemonicParsing="false" onAction="#editMode" text="Edit mode" />
-        <Button layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
+        <Button disable="true" layoutX="348.0" layoutY="61.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="111.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 35%;" text="Shop" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>

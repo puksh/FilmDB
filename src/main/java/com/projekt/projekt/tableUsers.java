@@ -14,9 +14,17 @@ public class tableUsers {
     private String theme;
     private String language;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public tableUsers(int id, String username, String firstname, String lastname,
                       String addressA, String addressB, String phone, String postcode,
-                      String city, String email,String password, String theme, String language, int admin) {
+                      String city, String email, String password, String theme, String language, int admin) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;
