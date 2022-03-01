@@ -19,7 +19,7 @@
             <TableColumn prefWidth="75.0" text="email" />
             <TableColumn prefWidth="75.0" text="password" />
             <TableColumn prefWidth="75.0" text="theme" />
-            <TableColumn minWidth="0.0" prefWidth="62.0" text="language" />
+            <TableColumn prefWidth="62.0" text="language" />
             <TableColumn prefWidth="48.0" text="admin" />
         </columns>
       </TableView>
