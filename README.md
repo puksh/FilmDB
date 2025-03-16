@@ -1,49 +1,8 @@
 # FilmDB Application (eng. MovieDB)
 
-## Project Structure
-
-```
-database_queries.txt
-db.sql
-pom.xml
-projekt.iml
-select_querries.txt
-.idea/
-    .gitignore
-    compiler.xml
-    cssdialects.xml
-    encodings.xml
-    jarRepositories.xml
-    misc.xml
-    modules.xml
-    uiDesigner.xml
-    vcs.xml
-    libraries/
-        fontawesomefx_8_9.xml
-        ...
-lib/
-    fontawesomefx-8.9.jar
-    mysql-connector-java-8.0.17.jar
-    protobuf-java-3.6.1.jar
-pictures/
-    database_after_queries.png
-    ekran_logowania_startowy.png
-    HomePage.png
-src/
-    main/
-        java/
-        resources/
-target/
-    classes/
-        com/
-        css/
-        ...
-    test-classes/
-```
-
 ## Pictures
 
-### Database After Queries
+## Database After Queries
 ![Database After Queries](pictures/database_after_queries.png)
 
 ## Description
