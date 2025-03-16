@@ -1,4 +1,4 @@
-# Projekt Application
+# FilmDB Application (eng. MovieDB)
 
 ## Project Structure
 
@@ -45,12 +45,6 @@ target/
 
 ### Database After Queries
 ![Database After Queries](pictures/database_after_queries.png)
-
-### Login Screen
-![Login Screen](pictures/ekran_logowania_startowy.png)
-
-### Home Page
-![Home Page](pictures/HomePage.png)
 
 ## Description
 
